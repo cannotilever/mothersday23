@@ -4,7 +4,7 @@ import time
 import requests
 termwidth = os.get_terminal_size()[0]
 
-piano = mido.open_input('Steinberg UR22C:Steinberg UR22C MIDI 1 24:0')
+piano = mido.open_input(mido.get_input_names()[1])
 
 # smoke on the water, last value should never be read, just filler
 noteArray = [3, 6, 8,  3, 6, 9, 8,  3, 6, 8, 6, 3, 3, 0]
@@ -18,7 +18,7 @@ print("Waiting for your input...\n")
 
 def handleWin():
     print("Good job!")
-    requests.post("http://192.168.10.15/tag/piano")
+    requests.get("http://192.168.10.15/tag/piano")
     print("Go check the box.")
     time.sleep(15)
     os.system("poweroff")
